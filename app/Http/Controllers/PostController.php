@@ -12,8 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-        return "jorge luis lopez";
+        // return "jorge luis lopez";
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -32,12 +33,13 @@ class PostController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
+    /*
+    * Vamos a mostrar un id en especifico
+    */
+    public function show($id)
     {
-        //
+        $post = Post::findOrFail($id); // busca el post por id, o lanza error si no existe
+        return $post; // también devolvemos JSON por ahora
     }
 
     /**

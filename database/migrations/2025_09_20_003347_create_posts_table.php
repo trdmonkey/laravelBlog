@@ -18,6 +18,10 @@ return new class extends Migration
 
             $table->timestamps();
 
+            $table->string('slug')->nullable()->unique();
+            $table->string('excerpt')->nullable();
+            $table->timestamp('published_at')->nullable();
+
         });
     }
 
