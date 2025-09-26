@@ -7,62 +7,55 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // return "jorge luis lopez";
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at','desc')->get();
         return view('posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // Validamos los campos
+        $validated = $request->validate([
+            'title'   => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $post = Post::create($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Post creado correctamente por Jorge Luis');
     }
 
-    /*
-    * Vamos a mostrar un id en especifico
-    */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id); // busca el post por id, o lanza error si no existe
-        return $post; // también devolvemos JSON por ahora
+        return view('posts.show', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'title'   => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $post->update($validated);
+
+        return redirect()->route('posts.show', $post)->with('success', 'Post actualizado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Post eliminado');
     }
 }

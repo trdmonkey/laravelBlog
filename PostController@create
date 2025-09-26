@@ -1,0 +1,20 @@
+405 Not Allowed
+Connection: close
+Date: Fri, 26 Sep 2025 16:18:31 GMT
+Server: Parking/1.0
+Content-Length: 154
+Content-Type: text/html
+Client-Date: Fri, 26 Sep 2025 16:18:31 GMT
+Client-Peer: 64.190.63.222:80
+Client-Response-Num: 1
+
+500 Can't connect to _:80 (Nombre o servicio desconocido)
+Content-Type: text/plain
+Client-Date: Fri, 26 Sep 2025 16:18:32 GMT
+Client-Warning: Internal response
+
+500 Can't connect to posts.create:80 (Nombre o servicio desconocido)
+Content-Type: text/plain
+Client-Date: Fri, 26 Sep 2025 16:18:33 GMT
+Client-Warning: Internal response
+
