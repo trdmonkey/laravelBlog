@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">Crear Nuevo Post</h1>
+    <h1 class="text-3xl font-bold text-indigo-600 mb-8">
+        <i class="fa-regular fa-address-card text-indigo-600"></i> Crear Nuevo Post
+    </h1>
 
     <!-- Mensajes de validación -->
     @if ($errors->any())
