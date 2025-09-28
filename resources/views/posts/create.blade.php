@@ -1,25 +1,56 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Crear nuevo Post</title>
+    <title>Crear Post | Mi Blog</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <h1>Crear un nuevo Post</h1>
+<body class="bg-light">
 
-    <form action="{{ route('posts.store') }}" method="POST">
-        @csrf
-        <p>
-            <label for="title">Título:</label><br>
-            <input type="text" name="title" id="title">
-        </p>
-        <p>
-            <label for="content">Contenido:</label><br>
-            <textarea name="content" id="content"></textarea>
-        </p>
-        <button type="submit">Guardar</button>
-    </form>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ route('posts.index') }}">📝 Mi Blog</a>
+        </div>
+    </nav>
 
-    <p><a href="{{ route('posts.index') }}">Volver a la lista</a></p>
+    <!-- Contenedor -->
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="mb-4">➕ Crear nuevo post</h1>
+
+                <!-- Validación -->
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <!-- Formulario -->
+                <form action="{{ route('posts.store') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Contenido</label>
+                        <textarea class="form-control" name="content" id="content" rows="5" required>{{ old('content') }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">💾 Guardar</button>
+                    <a href="{{ route('posts.index') }}" class="btn btn-secondary">⬅️ Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

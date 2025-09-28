@@ -22,13 +22,13 @@ class PostController extends Controller
     {
         // Validamos los campos
         $validated = $request->validate([
-            'title'   => 'required|string|max:255',
-            'content' => 'required|string',
+            'title'   => 'required|min:3|max:255',
+            'content' => 'required|min:10',
         ]);
 
         $post = Post::create($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Post creado correctamente por Jorge Luis');
+        return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
     }
 
     public function show(Post $post)
@@ -44,8 +44,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validated = $request->validate([
-            'title'   => 'required|string|max:255',
-            'content' => 'required|string',
+            'title'   => 'required|min:3|max:255',
+            'content' => 'required|min:10',
         ]);
 
         $post->update($validated);
