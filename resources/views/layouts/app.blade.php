@@ -11,14 +11,14 @@
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="{{ route('posts.index') }}" 
-               class="text-2xl font-extrabold text-blue-600 tracking-tight hover:text-blue-700 transition">
+               class="text-2xl font-extrabold text-blue-600 tracking-tight hover:text-blue-700 transition no-underline">
                 Mi Blog
             </a>
             <div class="flex items-center space-x-6">
                 <a href="{{ route('posts.index') }}" 
-                   class="text-gray-700 hover:text-blue-600 font-medium transition">Posts</a>
+                   class="text-gray-700 hover:text-blue-600 font-medium transition no-underline">Posts</a>
                 <a href="{{ route('posts.create') }}" 
-                   class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-700 transition">
+                   class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium shadow hover:bg-blue-700 transition no-underline">
                    + Crear Post
                 </a>
             </div>

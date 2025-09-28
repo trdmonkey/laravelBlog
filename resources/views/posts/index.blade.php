@@ -23,14 +23,14 @@
     <!-- Posts grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($posts as $post)
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-6 flex flex-col">
+            <div class="bg-white rounded-2xl shadow-xl hover:shadow-lg transition p-6 flex flex-col">
                 <!-- Icono y título -->
                 <div class="flex items-center gap-3 mb-3">
                     <div class="p-2 rounded-full bg-blue-100 text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" 
                              viewBox="0 0 24 24" stroke="currentColor">
                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                   d="M12 20l9-5-9-5-9 5 9 5z" />
+                                   d="M12 18l9-5-9-5-9 5 9 5z" />
                         </svg>
                     </div>
                     <h2 class="text-xl font-semibold text-slate-800">{{ $post->title }}</h2>
@@ -40,7 +40,7 @@
                 <p class="text-slate-600 flex-1 mb-6 line-clamp-3">{{ $post->content }}</p>
 
                 <!-- Footer de card -->
-                <div class="flex justify-between items-center border-t pt-4">
+                <div class="flex justify-between items-center border-t border-blue-400 pt-4">
                     <a href="{{ route('posts.show', $post) }}" 
                        class="text-blue-600 hover:text-blue-800 font-medium no-underline">
                        Leer más
