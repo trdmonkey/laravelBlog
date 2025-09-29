@@ -17,7 +17,7 @@
             <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Título</label>
             <input type="text" name="title" id="title"
                 value="{{ old('title', $post->title) }}"
-                class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300 sm:text-sm"
+                class="p-2 w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300 sm:text-sm"
                 required>
             @error('title')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
