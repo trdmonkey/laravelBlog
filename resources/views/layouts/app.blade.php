@@ -38,7 +38,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
+    <footer class="bg-gray-900 text-gray-400 text-center py-3 text-sm">
         © {{ date('Y') }} <span class="text-white font-semibold">Mi Blog</span> — Todos los derechos reservados
     </footer>
 

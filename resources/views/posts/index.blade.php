@@ -24,7 +24,8 @@
                 <!-- Icono y título -->
                 <div class="flex items-center gap-3 mb-3">
                     <div class="p-2 rounded-full bg-blue-100 text-gray-600">
-                        <i class="fa-solid fa-bowling-ball"></i>
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                        <!-- <i class="fa-solid fa-hand-holding-heart"></i> // Otra opcion -->
                     </div>
                     <h2 class="text-xl font-semibold text-slate-600">{{ $post->title }}</h2>
                 </div>
@@ -37,25 +38,47 @@
                     <!-- Ver -->
                     <a href="{{ route('posts.show', $post) }}" 
                     class="text-blue-600 hover:text-blue-800 font-medium no-underline">
-                    Leer más
+                        Leer más
                     </a>
 
                     <div class="flex gap-2">
                         <!-- Editar -->
                         <a href="{{ route('posts.edit', $post) }}" 
-                        class="inline-flex items-center gap-2 px-4 py-1.5 text-sm rounded-md bg-green-600 text-white hover:bg-green-800 hover:text-white transition no-underline">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        
+                        class="inline-flex items-center gap-2 px-4 py-1.5 text-sm rounded-md bg-green-600 text-white hover:bg-green-800 transition no-underline">
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </a>
 
-                        <!-- Eliminar -->
-                        <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este post?');">
+                        <!-- Botón que abre modal -->
+                        <button type="button" 
+                            onclick="document.getElementById('deleteModal-{{ $post->id }}').classList.remove('hidden')"
+                            class="inline-flex items-center gap-2 px-4 py-1.5 text-sm rounded-md bg-red-500 text-white hover:bg-red-700 transition shadow-md">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de confirmación -->
+            <div id="deleteModal-{{ $post->id }}" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">¿Eliminar este post?</h2>
+                    <p class="text-slate-600 mb-6">Esta acción no se puede deshacer. ¿Seguro que deseas eliminar <span class="font-semibold">{{ $post->title }}</span>?</p>
+                    
+                    <div class="flex justify-end gap-3">
+                        <!-- Cancelar -->
+                        <button type="button" 
+                            onclick="document.getElementById('deleteModal-{{ $post->id }}').classList.add('hidden')" 
+                            class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+                            Cancelar
+                        </button>
+                        
+                        <!-- Confirmar eliminación -->
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
-                                class="inline-flex items-center gap-2 px-4 py-1.5 text-sm rounded-md bg-red-500 text-white hover:bg-red-700 transition shadow-md">
-                                <i class="fa-solid fa-trash"></i>
-                                
+                                class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
+                                Sí, eliminar
                             </button>
                         </form>
                     </div>
