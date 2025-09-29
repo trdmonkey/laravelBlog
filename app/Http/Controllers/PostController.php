@@ -28,7 +28,11 @@ class PostController extends Controller
 
         $post = Post::create($validated);
 
-        return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
+        // return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
+        return redirect()->route('posts.index')->with([
+            'type' => 'success',
+            'message' => 'Post creado correctamente.'
+        ]);
     }
 
     public function show(Post $post)
@@ -50,12 +54,20 @@ class PostController extends Controller
 
         $post->update($validated);
 
-        return redirect()->route('posts.show', $post)->with('success', 'Post actualizado');
+        // return redirect()->route('posts.show', $post)->with('success', 'Post actualizado');
+        return redirect()->route('posts.show', $post)->with([
+            'type' => 'info',
+            'message' => 'Post actualizado.'
+        ]);
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post eliminado');
+        // return redirect()->route('posts.index')->with('danger', 'Post eliminado');
+        return redirect()->route('posts.index')->with([
+            'type' => 'danger',
+            'message' => 'Post eliminado.'
+        ]);
     }
 }

@@ -11,6 +11,9 @@
         body { font-family: 'Inter', sans-serif; }
     </style>
 
+    <!-- Alpine.js // para mensajes push -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 </head>
 <body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen font-sans">
 
@@ -34,6 +37,43 @@
 
     <!-- Contenido -->
     <main class="container mx-auto px-6 py-12 flex-1">
+
+        @if(session('message'))
+            @php
+                $type = session('type') ?? 'info';
+
+                $colors = [
+                    'success' => 'text-green-800 bg-green-50 border-green-300',
+                    'danger'  => 'text-red-800 bg-red-50 border-red-300',
+                    'warning' => 'text-yellow-800 bg-yellow-50 border-yellow-300',
+                    'info'    => 'text-blue-800 bg-blue-50 border-blue-300',
+                ];
+
+                $icons = [
+                    'success' => 'fa-circle-check',
+                    'danger'  => 'fa-circle-xmark',
+                    'warning' => 'fa-triangle-exclamation',
+                    'info'    => 'fa-circle-info',
+                ];
+            @endphp
+
+        <div class="max-w-4xl mx-auto mt-4">
+            <div 
+                x-data="{ show: true }" 
+                x-show="show" 
+                x-init="setTimeout(() => show = false, 3000)" 
+                class="flex items-center p-4 mb-4 text-sm rounded-lg border shadow transition {{ $colors[$type] }}"
+                role="alert">
+                <i class="fa-solid {{ $icons[$type] }} mr-2"></i>
+                <span class="font-medium">{{ session('message') }}</span>
+                <button @click="show = false" class="ml-auto hover:opacity-70">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+    @endif
+
+
         @yield('content')
     </main>
 
