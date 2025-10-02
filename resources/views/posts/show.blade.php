@@ -7,6 +7,18 @@
 
     <!-- Header -->
     <div class="flex justify-between items-center mb-6">
+
+        @if($post->media_type === 'image' || $post->media_type === 'gif')
+            <img src="{{ asset('storage/'.$post->media_url) }}" 
+                alt="Imagen del post"
+                class="w-full h-48 object-cover rounded-lg mb-4">
+        @elseif($post->media_type === 'video')
+            <video controls class="w-full rounded-lg mb-4">
+                <source src="{{ asset('storage/'.$post->media_url) }}" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+        @endif
+
         <h1 class="text-3xl font-extrabold text-slate-900 flex items-center gap-3">
             <i class="fa-regular fa-file-lines text-blue-600"></i>
             {{ $post->title }}

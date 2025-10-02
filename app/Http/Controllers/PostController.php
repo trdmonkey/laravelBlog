@@ -28,6 +28,20 @@ class PostController extends Controller
 
         $post = Post::create($validated);
 
+        if ($request->hasFile('media')) {
+            $file = $request->file('media');
+            $path = $file->store('uploads', 'public'); // guarda en storage/app/public/uploads
+
+            // Detectar tipo por extensión
+            $extension = strtolower($file->getClientOriginalExtension());
+            $type = in_array($extension, ['jpg','jpeg','png','webp']) ? 'image'
+                : ($extension === 'gif' ? 'gif' : 'video');
+
+            $post->media_type = $type;
+            $post->media_url = $path;
+            $post->save();
+        }
+
         // return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
         return redirect()->route('posts.index')->with([
             'type' => 'success',
@@ -53,6 +67,21 @@ class PostController extends Controller
         ]);
 
         $post->update($validated);
+
+        if ($request->hasFile('media')) {
+            $file = $request->file('media');
+            $path = $file->store('uploads', 'public'); // guarda en storage/app/public/uploads
+
+            // Detectar tipo por extensión
+            $extension = strtolower($file->getClientOriginalExtension());
+            $type = in_array($extension, ['jpg','jpeg','png','webp']) ? 'image'
+                : ($extension === 'gif' ? 'gif' : 'video');
+
+            $post->media_type = $type;
+            $post->media_url = $path;
+            $post->save();
+        }
+
 
         // return redirect()->route('posts.show', $post)->with('success', 'Post actualizado');
         return redirect()->route('posts.show', $post)->with([

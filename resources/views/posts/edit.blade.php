@@ -8,7 +8,7 @@
         <i class="fas fa-edit text-indigo-600"></i> Editar Post
     </h1>
 
-    <form action="{{ route('posts.update', $post) }}" method="POST" class="space-y-6">
+    <form action="{{ route('posts.update', $post) }}" method="POST" class="space-y-6" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -33,6 +33,12 @@
             @error('content')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
+        </div>
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700">Archivo multimedia</label>
+            <input type="file" name="media" 
+                class="mt-1 block w-full border border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <p class="text-xs text-slate-500 mt-1">Puedes subir imagen, GIF o video (mp4).</p>
         </div>
 
         <!-- Botones -->

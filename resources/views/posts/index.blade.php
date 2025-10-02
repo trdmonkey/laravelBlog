@@ -21,6 +21,18 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($posts as $post)
             <div class="bg-white rounded-2xl shadow-xl hover:shadow-lg transition p-6 flex flex-col">
+
+                @if($post->media_type === 'image' || $post->media_type === 'gif')
+                    <img src="{{ asset('storage/'.$post->media_url) }}" 
+                        alt="Imagen del post"
+                        class="w-full h-48 object-cover rounded-lg mb-4">
+                @elseif($post->media_type === 'video')
+                    <video controls class="w-full rounded-lg mb-4">
+                        <source src="{{ asset('storage/'.$post->media_url) }}" type="video/mp4">
+                        Tu navegador no soporta el video.
+                    </video>
+                @endif
+
                 <!-- Icono y título -->
                 <div class="flex items-center gap-3 mb-3">
                     <div class="p-2 rounded-full bg-blue-100 text-gray-600">

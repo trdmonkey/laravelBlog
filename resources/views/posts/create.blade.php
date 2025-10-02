@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    <form action="{{ route('posts.store') }}" method="POST" class="bg-white p-8 shadow rounded-xl">
+    <form action="{{ route('posts.store') }}" method="POST" class="bg-white p-8 shadow rounded-xl" enctype="multipart/form-data">
         @csrf
 
         <!-- Título -->
@@ -33,6 +33,13 @@
             <textarea name="content" id="content" rows="6"
                 class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-2">{{ old('content') }}</textarea>
         </div>
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700">Archivo multimedia</label>
+            <input type="file" name="media" 
+                class="mt-1 block w-full border border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <p class="text-xs text-slate-500 mt-1">Puedes subir imagen, GIF o video (mp4).</p>
+        </div>
+
 
         <!-- Botones -->
         <div class="flex justify-end space-x-4">
